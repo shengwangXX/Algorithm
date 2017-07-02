@@ -31,3 +31,6 @@ public void rotate(int[] nums, int k) {
         reverse(nums, 0, n-1);
     }
 }
+
+time :O(N)
+space: O(1)
