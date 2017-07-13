@@ -1,0 +1,77 @@
+public class MyStack {
+	public Queue<Integer> queue1;
+	public Queue<Integer> queue2;
+	private int size;
+    /** Initialize your data structure here. */
+    public MyStack() {
+        queue1 = new LinkedList<Integer>();
+        queue2 = new LinkedList<Integer>();
+        size = 0;
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        if(empty()||!queue1.isEmpty()){
+        	queue1.offer(x);
+        	size++;
+        }
+        else{
+        	queue2.offer(x);
+        	size++;
+        }
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        if(!queue1.isEmpty()){
+        	while(queue1.size() > 1){
+        	queue2.offer(queue1.poll());
+        	}
+        	size--;
+        	return queue1.poll();
+         }
+        else{
+        	while(queue2.size() > 1){
+        	queue1.offer(queue2.poll());
+        	}
+        	size--;
+        	return queue2.poll();
+        }
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        if(!queue1.isEmpty()){
+        	while(queue1.size() > 1){
+        	queue2.offer(queue1.poll());
+        	}
+        	int k = queue1.poll();
+        	queue2.offer(k);
+        	return k;
+         }
+        else{
+        	while(queue2.size() > 1){
+        	queue1.offer(queue2.poll());
+        	}
+        	int k = queue2.poll();
+        	queue1.offer(k);
+        	return k;
+        	
+        }
+        
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+    	return size == 0 ? true:false;
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
