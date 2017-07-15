@@ -1,0 +1,36 @@
+public class Solution {
+public int nthUglyNumber(int n) {
+	if(n==1){
+		return 1;
+	}
+	int count = 2;
+	int ugly = 1;
+	Queue<Integer> queue1 = new LinkedList<Integer>();
+	Queue<Integer> queue2 = new LinkedList<Integer>();
+	Queue<Integer> queue3 = new LinkedList<Integer>();
+	queue1.offer(2);
+	queue2.offer(3);
+	queue3.offer(5);
+	while(count<=n){
+		int min2 = queue1.peek();
+		int min3 = queue2.peek();
+		int min5 = queue3.peek();		
+		int min = Math.min(Math.min(min2, min3), min5);
+		if (min == min2){
+			queue1.poll();
+		}
+		if (min == min3){
+			queue2.poll();
+		}
+		if (min == min5){
+			queue3.poll();
+		}
+		queue1.offer(min*2);
+		queue2.offer(min*3);
+		queue3.offer(min*5);
+		count++;
+		ugly = min;
+	}
+	return ugly;
+}
+}

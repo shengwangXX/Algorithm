@@ -1,0 +1,29 @@
+public String simplifyPath(String path) {
+        LinkedList<String> stack = new LinkedList<String>();
+        String[] array = path.split("/");
+        for(String str: array){
+        	if(str.equals("")||str.equals(".")){
+        		continue;
+        	}
+        	else{
+        		if (str.equals("..")){
+        			if(!stack.isEmpty())
+        				stack.pop();
+        		}
+        		else{
+        			stack.push(str);
+        		}
+        	}
+        }
+        if(stack.isEmpty()){
+        	return "/";
+        }else
+        {
+        	Collections.reverse(stack);
+        	StringBuilder sb = new StringBuilder();
+        	while(!stack.isEmpty()){
+        		sb.append("/").append(stack.pop());
+        	}
+        	return sb.toString();
+        }
+    }
