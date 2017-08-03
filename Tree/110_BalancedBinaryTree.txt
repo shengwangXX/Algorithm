@@ -1,0 +1,44 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+     return postOrder(root)>=0;
+        
+    }
+    
+    public int postOrder(TreeNode node){
+        if(node == null){
+            return 0;
+        }
+        int left = postOrder(node.left);
+        int right = postOrder(node.right);
+        if(left <0 || right <0){
+            return -1;
+        }
+        if(left > right){
+			if(left > right +1){
+                return -1;
+            }
+            else{
+                return left +1;
+            }
+        }
+        else{
+			if(right > left +1){
+                return -1;
+            }
+            else{
+                return right +1;
+            }
+        } 
+        
+            
+    }
+}
