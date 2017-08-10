@@ -1,0 +1,66 @@
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode node1 = l1;
+        ListNode node2 = l2;
+        ListNode preHead = new ListNode(0);
+        ListNode tail = preHead;
+        int prenum = 0;
+        int curnum = 0;
+        int tmp =0;
+        while(node1!=null && node2!=null){
+            tmp = node1.val + node2.val + prenum;
+            if(tmp >=10){
+                curnum = tmp -10;
+                prenum =1;
+            }
+            else{
+                curnum = tmp;
+                prenum =0;
+            }
+            ListNode curnode = new ListNode(curnum);
+            tail.next = curnode;
+            tail = curnode;
+            node1 = node1.next;
+            node2 = node2.next;
+        }
+        while(node1!= null){
+            tmp = node1.val + prenum;
+            if(tmp >=10){
+                curnum = tmp -10;
+                prenum =1;
+            }
+            else{
+                curnum = tmp;
+                prenum =0;
+            }
+            ListNode curnode = new ListNode(curnum);
+            tail.next = curnode;
+            tail = curnode;
+            node1 = node1.next;
+        }
+        while(node2!= null){
+            tmp = node2.val + prenum;
+            if(tmp >=10){
+                curnum = tmp -10;
+                prenum =1;
+            }
+            else{
+                curnum = tmp;
+                prenum =0;
+            }
+            ListNode curnode = new ListNode(curnum);
+            tail.next = curnode;
+            tail = curnode;
+            node2 = node2.next;
+        }
+        if(prenum ==1){
+            ListNode curnode = new ListNode(prenum);
+            tail.next = curnode;
+            tail = curnode;
+        }
+        tail.next = null;
+        return preHead.next;
+    }
+    
+    
+}
