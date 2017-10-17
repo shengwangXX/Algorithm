@@ -1,0 +1,28 @@
+public class Solution {
+    public String addBinary(String a, String b) {
+        if(a == null || a.length() == 0){
+    		return b;
+    	}
+    	if( b == null || b.length() == 0){
+    		return a;
+    	}
+    	char[] arr = a.toCharArray();
+    	char[] brr = b.toCharArray();
+    	StringBuilder sb = new StringBuilder();
+    	
+    	int i = a.length() -1;
+    	int j = b.length() -1;
+    	int ba = 0;
+    	int bb = 0;
+    	int carry = 0;
+    	int res = 0;
+    	while(i>=0  || j >=0 ||carry>0){
+    		ba = (i >=0 ? arr[i--] - '0' : 0);
+    		bb = (j >=0 ? brr[j--] - '0' : 0);
+    		res = ba^bb^carry;
+    		carry = (ba+bb+carry)>=2 ? 1: 0;
+    		sb.append(res);
+    	}
+    	return sb.reverse().toString();		
+    	
+    }

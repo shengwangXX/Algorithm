@@ -1,0 +1,32 @@
+class Solution {
+	List<String> listhelp = new ArrayList<String>();
+    public void help(String str, int l, int r){
+        if(l > r){
+        	return ;
+        }
+    	if(l > 0){
+    		help(str + '(', l-1 , r);
+    	}
+    	if(r > 0){
+    		help(str + ')', l , r -1);
+    	}
+    	
+    	if(l == 0 && r == 0){
+    		listhelp.add(str);
+    		return ;
+    	}
+    	
+    }
+    
+    public List<String> generateParenthesis(int n) {
+        if(n<=0){
+        	return null;
+        }
+
+        String str= "";    
+        help(str, n, n);
+        return listhelp;
+    	
+    }
+}
+
